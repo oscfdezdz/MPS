@@ -1,5 +1,7 @@
 package es.uma.mps;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,9 +16,19 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 
 class FactorialTest {
+    Factorial factorial;
+    @BeforeEach
+    void setup() {
+        factorial = new Factorial();
+    }
+
+    @AfterEach
+    void shutdown() {
+        factorial = null;
+    }
+
     @Test
     void factorialOfZeroIsOne() {
-        var factorial = new Factorial();
         int obtainedValue = factorial.compute(0);
         int expectedValue = 1;
 
@@ -25,7 +37,6 @@ class FactorialTest {
 
     @Test
     void factorialOfOneIsOne() {
-        var factorial = new Factorial();
         int obtainedValue = factorial.compute(1);
         int expectedValue = 1;
 
@@ -34,7 +45,6 @@ class FactorialTest {
 
     @Test
     void factorialOfTwoIsTwo() {
-        var factorial = new Factorial();
         int obtainedValue = factorial.compute(2);
         int expectedValue = 2;
 
@@ -43,7 +53,6 @@ class FactorialTest {
 
     @Test
     void factorialOfThreeIsSix() {
-        var factorial = new Factorial();
         int obtainedValue = factorial.compute(3);
         int expectedValue = 6;
 
@@ -52,7 +61,6 @@ class FactorialTest {
 
     @Test
     void factorialOfFiveIs120() {
-        var factorial = new Factorial();
         int obtainedValue = factorial.compute(5);
         int expectedValue = 120;
 
