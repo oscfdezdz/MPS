@@ -1,6 +1,7 @@
 package es.uma.mps;
 
 /*
+ * Class providing a method to compute the factorial of an integer number
  * @author Óscar Fernández Díaz
  */
 
