@@ -4,22 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a7d6cb21-34a4-46dd-81e2-04dfa342cbd2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/uma/mps/Factorial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/uma/mps/Factorial.java" afterDir="false" />
-    </list>
+    <list default="true" id="781f513a-07e3-42fc-a0f7-7a82d5c7a4ca" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JUnit5 Test Class" />
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -31,123 +20,41 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectId" id="2LBFQO4ZYnNQ0IZ2OqZ8M59kKEP" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectId" id="2LUp6219yJeHOtBb05F3c4B6STB" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "openjdk-19",
+    "last_opened_file_path": "C:/Users/oscfd/Proyectos/MPS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="es.uma.mps" />
-    </key>
-  </component>
-  <component name="RunManager" selected="JUnit.FactorialTest">
-    <configuration name="FactorialTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="factorial" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="es.uma.mps.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="es.uma.mps" />
-      <option name="MAIN_CLASS_NAME" value="es.uma.mps.FactorialTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FactorialTest.factorialOfOneIsOne" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="factorial" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="es.uma.mps.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="es.uma.mps" />
-      <option name="MAIN_CLASS_NAME" value="es.uma.mps.FactorialTest" />
-      <option name="METHOD_NAME" value="factorialOfOneIsOne" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FactorialTest.factorialOfThreeIsSix" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="factorial" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="es.uma.mps.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="es.uma.mps" />
-      <option name="MAIN_CLASS_NAME" value="es.uma.mps.FactorialTest" />
-      <option name="METHOD_NAME" value="factorialOfThreeIsSix" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JUnit.FactorialTest" />
-        <item itemvalue="JUnit.FactorialTest.factorialOfThreeIsSix" />
-        <item itemvalue="JUnit.FactorialTest.factorialOfOneIsOne" />
-      </list>
-    </recent_temporary>
-  </component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a7d6cb21-34a4-46dd-81e2-04dfa342cbd2" name="Changes" comment="" />
-      <created>1675336552082</created>
+      <changelist id="781f513a-07e3-42fc-a0f7-7a82d5c7a4ca" name="Changes" comment="" />
+      <created>1675935336841</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1675336552082</updated>
-      <workItem from="1675336553143" duration="1136000" />
-      <workItem from="1675371085230" duration="116000" />
-      <workItem from="1675417950000" duration="320000" />
-      <workItem from="1675418540847" duration="2824000" />
-      <workItem from="1675421393844" duration="2402000" />
-      <workItem from="1675676403592" duration="39000" />
-      <workItem from="1675763023189" duration="1743000" />
+      <updated>1675935336841</updated>
+      <workItem from="1675935347120" duration="358000" />
+      <workItem from="1675936320514" duration="734000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>
