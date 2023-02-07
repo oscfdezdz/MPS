@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7d6cb21-34a4-46dd-81e2-04dfa342cbd2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/es/uma/mps/NegativeValueException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/uma/mps/Factorial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/uma/mps/Factorial.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +131,7 @@
       <workItem from="1675418540847" duration="2824000" />
       <workItem from="1675421393844" duration="2402000" />
       <workItem from="1675676403592" duration="39000" />
-      <workItem from="1675763023189" duration="1091000" />
+      <workItem from="1675763023189" duration="1743000" />
     </task>
     <servers />
   </component>
