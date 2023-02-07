@@ -1,5 +1,9 @@
 package es.uma.mps;
 
+/*
+ * @author Óscar Fernández Díaz
+ */
+
 public class Factorial {
     public int compute(int number) {
         int result;
