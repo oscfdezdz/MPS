@@ -1,7 +1,8 @@
 package es.uma.mps;
 
 /*
-    Class providing a method to compute the factorial of an integer number
+ * Class providing a method to compute the factorial of an integer number
+ * @author Óscar Fernández Díaz
  */
 
 public class Factorial {
@@ -17,6 +18,10 @@ public class Factorial {
         }
 
         return result;
+    }
+
+    void f() {
+        // aaaa
     }
 
     void g() {
