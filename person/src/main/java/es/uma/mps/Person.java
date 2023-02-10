@@ -15,9 +15,9 @@ public class Person {
     /**
      * Constructs a person with a name, age and gender.
      *
-     * @param name
-     * @param age
-     * @param gender
+     * @param name Name of the person
+     * @param age Age of the person
+     * @param gender Gender of the person
      */
     public Person(String name, int age, String gender) {
         this.name = name;
@@ -42,8 +42,8 @@ public class Person {
      * an array of two elements (the first element is the male mean age and the second one is the
      * female mean age)
      *
-     * @param persons
-     * @return
+     * @param persons List of people
+     * @return Array of size two with male mean age and female mean age
      */
     public double[] averageAgePerGender(List<Person> persons) {
         int males = 0;
