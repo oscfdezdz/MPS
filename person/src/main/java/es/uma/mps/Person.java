@@ -50,6 +50,7 @@ public class Person {
         int females = 0;
         double maleAges = 0.0;
         double femaleAges = 0.0;
+        double[] averageAges = new double[2];
 
         for (Person person : persons) {
             if (person.gender.equals("Male")) {
@@ -61,6 +62,18 @@ public class Person {
             }
         }
 
-        return new double[] {maleAges/males, femaleAges/females};
+        if (males == 0) {
+            averageAges[0] = 0;
+        } else {
+            averageAges[0] = maleAges / males;
+        }
+
+        if (females == 0) {
+            averageAges[1] = 0;
+        } else {
+            averageAges[1] = femaleAges / females;
+        }
+
+        return averageAges;
     }
 }
