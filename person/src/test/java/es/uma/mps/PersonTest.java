@@ -65,6 +65,18 @@ class PersonTest {
     }
 
     @Test
+    void averageAgePerGenderNullPerson() {
+        persons.add(null);
+        persons.add(new Person("Test", -1, "Female"));
+        persons.add(new Person("Test2", 10, null));
+
+        double[] expectedResult = {26.5, 40.5};
+        double[] result = person.averageAgePerGender(persons);
+
+        assertArrayEquals(expectedResult, result);
+    }
+
+    @Test
     void averageAgePerGenderEmptyList() {
         double[] expectedResult = {0.0, 0.0};
         double[] result = person.averageAgePerGender(emptyPersons);
