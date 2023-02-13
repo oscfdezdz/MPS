@@ -7,21 +7,33 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class PersonTest {
-    List<Person> persons;
+    private List<Person> emptyPersons, emptyFemales, emptyMales, persons;
+    private Person person;
 
     @BeforeEach
     void setup() {
-        Person person1 = new Person("Ana", 54, "Female");
-        Person person2 = new Person("Juan", 20, "Male");
+        person = new Person("Anonymous", 30, "Male");
+        Person person1 = new Person("Alberto", 20, "Male");
+        Person person2 = new Person("Ana", 54, "Female");
+        Person person3 = new Person("Bernardo", 33, "Male");
+        Person person4 = new Person("Beatriz", 27, "Female");
 
+        emptyPersons = new ArrayList<>();
+        emptyFemales = new ArrayList<>();
+        emptyMales = new ArrayList<>();
         persons = new ArrayList<>();
 
+        emptyFemales.add(person1);
+        emptyFemales.add(person3);
+        emptyMales.add(person2);
+        emptyMales.add(person4);
         persons.add(person1);
         persons.add(person2);
+        persons.add(person3);
+        persons.add(person4);
     }
 
     @AfterEach
@@ -50,5 +62,37 @@ class PersonTest {
         for (Person person : persons) {
             assertTrue(person.age() >= 0);
         }
+    }
+
+    @Test
+    void averageAgePerGenderEmptyList() {
+        double[] expectedResult = {0.0, 0.0};
+        double[] result = person.averageAgePerGender(emptyPersons);
+
+        assertArrayEquals(expectedResult, result);
+    }
+
+    @Test
+    void averageAgePerGenderEmptyFemales() {
+        double[] expectedResult = {26.5, 0.0};
+        double[] result = person.averageAgePerGender(emptyFemales);
+
+        assertArrayEquals(expectedResult, result);
+    }
+
+    @Test
+    void averageAgePerGenderEmptyMales() {
+        double[] expectedResult = {0.0, 40.5};
+        double[] result = person.averageAgePerGender(emptyMales);
+
+        assertArrayEquals(expectedResult, result);
+    }
+
+    @Test
+    void averageAgePerGenderCompleteList() {
+        double[] expectedResult = {26.5, 40.5};
+        double[] result = person.averageAgePerGender(persons);
+
+        assertArrayEquals(expectedResult, result);
     }
 }
