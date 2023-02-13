@@ -53,12 +53,12 @@ public class Person {
         double[] averageAges = new double[2];
 
         for (Person person : persons) {
-            if (person.gender.equals("Male")) {
+            if (person.gender().equals("Male")) {
                 males++;
-                maleAges += person.age;
+                maleAges += person.age();
             } else {
                 females++;
-                femaleAges += person.age;
+                femaleAges += person.age();
             }
         }
 
