@@ -1,8 +1,6 @@
 package es.uma.mps;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,7 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
     2. Factorial 1 -> 1
     3. Factorial 2 -> 2
     4. Factorial 3 -> 6
-    5. Factorial 5 -> 120
+    5. Factorial 4 -> 24
+    6. Factorial 5 -> 120
  */
 
 class FactorialTest {
@@ -27,44 +26,61 @@ class FactorialTest {
         factorial = null;
     }
 
-    @Test
-    void factorialOfZeroIsOne() {
-        int obtainedValue = factorial.compute(0);
-        int expectedValue = 1;
+    @Nested
+    class SmallNaturals {
+        @Test
+        void factorialOfZeroIsOne() {
+            int obtainedValue = factorial.compute(0);
+            int expectedValue = 1;
 
-        assertEquals(expectedValue, obtainedValue);
-    }
+            assertEquals(expectedValue, obtainedValue);
+        }
 
-    @Test
-    void factorialOfOneIsOne() {
-        int obtainedValue = factorial.compute(1);
-        int expectedValue = 1;
+        @Test
+        void factorialOfOneIsOne() {
+            int obtainedValue = factorial.compute(1);
+            int expectedValue = 1;
 
-        assertEquals(expectedValue, obtainedValue);
-    }
+            assertEquals(expectedValue, obtainedValue);
+        }
 
-    @Test
-    void factorialOfTwoIsTwo() {
-        int obtainedValue = factorial.compute(2);
-        int expectedValue = 2;
+        @Test
+        void factorialOfTwoIsTwo() {
+            int obtainedValue = factorial.compute(2);
+            int expectedValue = 2;
 
-        assertEquals(expectedValue, obtainedValue);
-    }
+            assertEquals(expectedValue, obtainedValue);
+        }
 
-    @Test
-    void factorialOfThreeIsSix() {
-        int obtainedValue = factorial.compute(3);
-        int expectedValue = 6;
+        @Test
+        void factorialOfThreeIsSix() {
+            int obtainedValue = factorial.compute(3);
+            int expectedValue = 6;
 
-        assertEquals(expectedValue, obtainedValue);
-    }
+            assertEquals(expectedValue, obtainedValue);
+        }
 
-    @Test
-    void factorialOfFiveIs120() {
-        int obtainedValue = factorial.compute(5);
-        int expectedValue = 120;
+        @Test
+        void factorialOfFourIsTwentyFour() {
+            int obtainedValue = factorial.compute(4);
+            int expectedValue = 24;
 
-        assertEquals(expectedValue, obtainedValue);
+            assertAll("factorial",
+                    () -> assertNotNull(factorial),
+                    () -> assertEquals(expectedValue, obtainedValue),
+                    () -> assertNotEquals(0, obtainedValue),
+                    () -> assertTrue(obtainedValue > 0),
+                    () -> assertFalse(obtainedValue < 0)
+            );
+        }
+
+        @Test
+        void factorialOfFiveIs120() {
+            int obtainedValue = factorial.compute(5);
+            int expectedValue = 120;
+
+            assertEquals(expectedValue, obtainedValue);
+        }
     }
 
     @Test
