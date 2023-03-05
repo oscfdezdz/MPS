@@ -19,38 +19,32 @@ package es.uma.mps;
   https://github.com/fabriciorby/maven-surefire-junit5-tree-reporter
  */
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertIterableEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.condition.JRE.JAVA_21;
-import static org.junit.jupiter.api.condition.JRE.JAVA_8;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.EnabledForJreRange;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledForJreRange;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.condition.JRE.JAVA_21;
+import static org.junit.jupiter.api.condition.JRE.JAVA_8;
 
 /**
  * Unit tests for class {@link Factorial}
  *
- * @author Antonio J. Nebro
+ * @author Óscar Fernández Díaz
  */
+@DisplayName("Factorial")
 class ImprovedFactorialTest {
 
     Factorial factorial;
 
     @Nested
-    @DisplayName("Test cases for the compute() method")
+    @DisplayName("of int values")
     class TestCasesForIntValues {
 
         @BeforeEach
@@ -59,7 +53,7 @@ class ImprovedFactorialTest {
         }
 
         @ParameterizedTest
-        @DisplayName("Test cases for the compute() method that check expected valid results")
+        @DisplayName("that returns valid results")
         @CsvSource({"0, 1", "1, 1", "2, 2", "3, 6", "5, 120", "12, 479001600"})
         void theComputeMethodReturnsAValidResult(int number, int expectedValue) {
             int actualValue = factorial.compute(number);
@@ -67,8 +61,9 @@ class ImprovedFactorialTest {
         }
 
         @Test
+        @DisplayName("that throws exceptions when needed")
         void testThrownExceptions() {
-            assertAll("Test thrown exceptions", () -> assertThrows(NegativeValueException.class, () -> factorial.compute(-1)), () -> assertThrows(ParameterValueCausesOverflow.class, () -> factorial.compute(13)));
+            assertAll(() -> assertThrows(NegativeValueException.class, () -> factorial.compute(-1)), () -> assertThrows(ParameterValueCausesOverflow.class, () -> factorial.compute(13)));
         }
 
         @AfterEach
@@ -78,7 +73,7 @@ class ImprovedFactorialTest {
     }
 
     @Nested
-    @DisplayName("Test cases for the computeBigValue() method")
+    @DisplayName("of BigInteger values")
     @EnabledForJreRange(min = JAVA_8, max = JAVA_21)
     class TestCasesForBigIntegerResults {
 
@@ -88,7 +83,7 @@ class ImprovedFactorialTest {
         }
 
         @Test
-        @DisplayName("Test cases for the computeBigValue() method that check expected valid results")
+        @DisplayName("that returns valid results")
         void computeBigValueMethodReturnsValidResults() {
             List<Integer> values = List.of(0, 1, 2, 3, 5, 12);
             List<BigInteger> expectedResults = Stream.of(1, 1, 2, 6, 120, 479001600).map(BigInteger::valueOf).collect(Collectors.toList());
@@ -99,13 +94,14 @@ class ImprovedFactorialTest {
         }
 
         @ParameterizedTest
-        @DisplayName("Test cases for the computeBigValue() method with high paramater values")
+        @DisplayName("that returns expected results for high values")
         @CsvSource({"13, 6227020800.0", "18, 6402373705728000.0"})
         void computeBigValueReturnTheExceptedResult(int number, double expectedValue) {
             assertEquals(expectedValue, factorial.computeBigValue(number).doubleValue());
         }
 
         @Test
+        @DisplayName("that raises an exception when the given value is negative")
         void factorialOfMinusOneRaisesAnException() {
             assertThrows(NegativeValueException.class, () -> factorial.computeBigValue(-1));
         }
