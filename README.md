@@ -11,6 +11,8 @@ Repository for Software Maintenance and Testing course
 
 ### [Ejercicio 3](factorialE3/)
 
+### [Laboratorio 2](https://github.com/oscfdezdz/MPS-Lab2)
+
 ## Notes
 - JaCoCo binary coverage reports are stored in `C:\Users\<user>\AppData\Local\JetBrains\IntelliJIdea<version>\coverage\`.
 - To generate surefire XML report, run `mvn test` and get it under `target\surefire-reports`.
