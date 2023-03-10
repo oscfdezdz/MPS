@@ -1,0 +1,3 @@
+[submodule "deque"]
+	path = deque
+	url = git@github.com:oscfdezdz/MPS-Lab2.git
