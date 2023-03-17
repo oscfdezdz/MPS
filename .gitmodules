@@ -1,3 +1,6 @@
 [submodule "deque"]
 	path = deque
 	url = git@github.com:oscfdezdz/MPS-Lab2.git
+[submodule "deque2"]
+	path = deque2
+	url = git@github.com:oscfdezdz/MPS-Lab2.git
