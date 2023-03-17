@@ -1,4 +1,5 @@
 # MPS
+
 Repository for Software Maintenance and Testing course
 
 ## Assignments
@@ -19,4 +20,6 @@ Repository for Software Maintenance and Testing course
 
 #### [Laboratorio 1](triangle)
 
-#### [Laboratorio 2](https://github.com/oscfdezdz/MPS-Lab2)
+#### [Laboratorio 2. Primera entrega](deque)
+
+#### [Laboratorio 2. Segunda entrega](deque2)
