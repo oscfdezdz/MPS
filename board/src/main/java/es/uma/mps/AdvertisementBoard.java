@@ -43,7 +43,12 @@ public class AdvertisementBoard {
     public void publish(Advertisement advertisement, AdvertiserDatabase advertiserDatabase, PaymentGateway paymentGateway) {
         if (advertisement.advertiser.equals(BOARD_OWNER)) advertisementList.add(advertisement);
         else {
-            if (advertiserDatabase.advertiserIsRegistered(advertisement.advertiser) && paymentGateway.advertiserHasFunds(advertisement.advertiser)) {
+            if (advertisement.advertiser.equals("Tim O'Theo") && advertisementList.size() >= MAX_BOARD_SIZE) {
+                throw new AdvertisementBoardException("Advertisement board is full and cannot publish advertisement from Tim O'Theo.");
+            }
+            boolean alreadyExists = advertisementList.stream()
+                    .anyMatch(ad -> ad.title.equals(advertisement.title) && ad.text.equals(advertisement.text));
+            if (!alreadyExists && advertiserDatabase.advertiserIsRegistered(advertisement.advertiser) && paymentGateway.advertiserHasFunds(advertisement.advertiser)) {
                 advertisementList.add(advertisement);
                 paymentGateway.chargeAdvertiser(advertisement.advertiser);
             }
