@@ -3,13 +3,20 @@ package es.uma.mps;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static es.uma.mps.AdvertisementBoard.BOARD_OWNER;
 import static es.uma.mps.AdvertisementBoard.MAX_BOARD_SIZE;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * @author Óscar Fernández Díaz
+ */
+
 class AdvertisementBoardTest {
 
-    AdvertisementBoard advertisementBoard;
+    private AdvertisementBoard advertisementBoard;
+    private AdvertiserDatabase advertiserDatabase;
+    private PaymentGateway paymentGateway;
 
     class DummyAdvertiserDatabase implements AdvertiserDatabase {
 
@@ -23,29 +30,31 @@ class AdvertisementBoardTest {
 
         @Override
         public boolean advertiserHasFunds(String advertiserName) {
-            return advertiserName.equals("Robin Robot");
+            return advertiserName.equals(BOARD_OWNER);
         }
 
         @Override
         public void chargeAdvertiser(String advertiserName) {
-
+            // Does not affect board owner
         }
     }
 
     @BeforeEach
     void setup() {
         advertisementBoard = new AdvertisementBoard();
+        advertiserDatabase = mock(AdvertiserDatabase.class);
+        paymentGateway = mock(PaymentGateway.class);
     }
 
     @Test
-    void oneAdAtStart() {
+    void initiallyHasOneAdvertisement() {
         int expectedValue = 1;
         assertEquals(expectedValue, advertisementBoard.numberOfPublishedAdvertisements());
     }
 
     @Test
-    void ownerPublication() {
-        Advertisement ad = new Advertisement("Title 1", "Text 1", "THE Company");
+    void addAdvertisementByOwner() {
+        Advertisement ad = new Advertisement("Title 1", "Text 1", BOARD_OWNER);
         AdvertiserDatabase dummyAdvertiserDatabase = new DummyAdvertiserDatabase();
         PaymentGateway fakePaymentGateway = new FakePaymentGateway();
         int expectedValue = 2;
@@ -56,47 +65,35 @@ class AdvertisementBoardTest {
     }
 
     @Test
-    void withoutFundsPublication() {
+    void addAdvertisementWithoutFunds() {
         Advertisement ad = new Advertisement("Title 2", "Text 2", "Pepe Gotera y Otilio");
-        AdvertiserDatabase dummyAdvertiserDatabase = new DummyAdvertiserDatabase();
-        PaymentGateway fakePaymentGateway = new FakePaymentGateway();
         int expectedValue = 1;
 
-        advertisementBoard.publish(ad, dummyAdvertiserDatabase, fakePaymentGateway);
+        when(advertiserDatabase.advertiserIsRegistered(ad.advertiser)).thenReturn(true);
+        when(paymentGateway.advertiserHasFunds(ad.advertiser)).thenReturn(false);
+
+        advertisementBoard.publish(ad, advertiserDatabase, paymentGateway);
 
         assertEquals(expectedValue, advertisementBoard.numberOfPublishedAdvertisements());
     }
 
     @Test
-    void publication() {
+    void addValidAdvertisement() {
         Advertisement ad = new Advertisement("Title 3", "Text 3", "Robin Robot");
-        AdvertiserDatabase dummyAdvertiserDatabase = new DummyAdvertiserDatabase();
-        PaymentGateway fakePaymentGateway = new FakePaymentGateway();
+        int expectedValue = 2;
 
-        advertisementBoard.publish(ad, dummyAdvertiserDatabase, fakePaymentGateway);
+        when(advertiserDatabase.advertiserIsRegistered(ad.advertiser)).thenReturn(true);
+        when(paymentGateway.advertiserHasFunds(ad.advertiser)).thenReturn(true);
 
-        assertFalse(advertisementBoard.findByTitle("Title 3").isEmpty());
+        advertisementBoard.publish(ad, advertiserDatabase, paymentGateway);
+
+        assertEquals(expectedValue, advertisementBoard.numberOfPublishedAdvertisements());
     }
 
     @Test
-    void notFindDeletedAd() {
-        Advertisement adOne = new Advertisement("Title 4", "Text 4", "THE Company");
-        Advertisement adTwo = new Advertisement("Title 5", "Text 5", "THE Company");
-        AdvertiserDatabase dummyAdvertiserDatabase = new DummyAdvertiserDatabase();
-        PaymentGateway fakePaymentGateway = new FakePaymentGateway();
-
-        advertisementBoard.publish(adOne, dummyAdvertiserDatabase, fakePaymentGateway);
-        advertisementBoard.publish(adTwo, dummyAdvertiserDatabase, fakePaymentGateway);
-
-        advertisementBoard.deleteAdvertisement("Title 4", "THE Company");
-
-        assertTrue(advertisementBoard.findByTitle("Title 4").isEmpty());
-    }
-
-    @Test
-    void ignoreDuplicatePublication() {
-        Advertisement adOne = new Advertisement("Title 4", "Text 4", "Robin Robot");
-        Advertisement adTwo = new Advertisement("Title 4", "Text 4", "Robin Robot");
+    void addTwoAdvertisementsByOwnerAndDeleteOne() {
+        Advertisement adOne = new Advertisement("Title 4", "Text 4", BOARD_OWNER);
+        Advertisement adTwo = new Advertisement("Title 5", "Text 5", BOARD_OWNER);
         AdvertiserDatabase dummyAdvertiserDatabase = new DummyAdvertiserDatabase();
         PaymentGateway fakePaymentGateway = new FakePaymentGateway();
         int expectedValue = 2;
@@ -104,27 +101,39 @@ class AdvertisementBoardTest {
         advertisementBoard.publish(adOne, dummyAdvertiserDatabase, fakePaymentGateway);
         advertisementBoard.publish(adTwo, dummyAdvertiserDatabase, fakePaymentGateway);
 
+        advertisementBoard.deleteAdvertisement("Title 4", BOARD_OWNER);
+
+        assertEquals(expectedValue, advertisementBoard.numberOfPublishedAdvertisements());
+        assertFalse(advertisementBoard.findByTitle("Title 4").isPresent());
+    }
+
+    @Test
+    void addAdvertisementThatAlreadyExists() {
+        Advertisement ad = new Advertisement("Title 4", "Text 4", "Robin Robot");
+        int expectedValue = 2;
+
+        when(advertiserDatabase.advertiserIsRegistered(ad.advertiser)).thenReturn(true);
+        when(paymentGateway.advertiserHasFunds(ad.advertiser)).thenReturn(true);
+
+        advertisementBoard.publish(ad, advertiserDatabase, paymentGateway);
+        assertEquals(expectedValue, advertisementBoard.numberOfPublishedAdvertisements());
+
+        advertisementBoard.publish(ad, advertiserDatabase, paymentGateway);
         assertEquals(expectedValue, advertisementBoard.numberOfPublishedAdvertisements());
     }
 
     @Test
-    void publicationsLimitReached() {
-        AdvertisementBoard spyBoard = spy(new AdvertisementBoard());
-
+    void addAdvertisementWhenBoardIsFull() {
         AdvertiserDatabase dummyAdvertiserDatabase = new DummyAdvertiserDatabase();
         PaymentGateway fakePaymentGateway = new FakePaymentGateway();
 
-        Advertisement ad;
-
-        for (int i = 0; i < MAX_BOARD_SIZE - 1; i++) { // Bucle hasta el número máximo de anuncios menos el añadido al inicio
-            ad = new Advertisement("Title " + i, "Text " + i, "Robin Robot");
-            spyBoard.publish(ad, dummyAdvertiserDatabase, fakePaymentGateway);
+        for (int i = 0; i < MAX_BOARD_SIZE; i++) {
+            advertisementBoard.publish(new Advertisement("Title " + i, "Text " + i, BOARD_OWNER), dummyAdvertiserDatabase, fakePaymentGateway);
         }
 
-        Advertisement timAd = new Advertisement("Title", "Text", "Tim O'Theo");
+        when(advertiserDatabase.advertiserIsRegistered(BOARD_OWNER)).thenReturn(true);
+        when(paymentGateway.advertiserHasFunds(BOARD_OWNER)).thenReturn(true);
 
-        assertThrows(AdvertisementBoardException.class, () -> spyBoard.publish(timAd, dummyAdvertiserDatabase, fakePaymentGateway));
-
-        verify(spyBoard, times(1)).publish(timAd, dummyAdvertiserDatabase, fakePaymentGateway);
+        assertThrows(AdvertisementBoardException.class, () -> advertisementBoard.publish(new Advertisement("Title 21", "Text 21", "Tim O'Theo"), advertiserDatabase, paymentGateway));
     }
 }
