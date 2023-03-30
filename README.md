@@ -23,3 +23,7 @@ Repository for Software Maintenance and Testing course
 #### [Laboratorio 2. Primera entrega](deque)
 
 #### [Laboratorio 2. Segunda entrega](deque2)
+
+#### [Laboratorio 3](board)
+
+#### [Laboratorio 4](plateau)
