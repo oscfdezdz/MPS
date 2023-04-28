@@ -27,3 +27,5 @@ Repository for Software Maintenance and Testing course
 #### [Laboratorio 3](board)
 
 #### [Laboratorio 4](plateau)
+
+#### [Laboratorio 5](boundedqueue)
