@@ -16,6 +16,8 @@ Repository for Software Maintenance and Testing course
 
 #### [Ejercicio 5](collapselines)
 
+#### [Ejercicio 8](avltree)
+
 ### Laboratorios
 
 #### [Laboratorio 1](triangle)
