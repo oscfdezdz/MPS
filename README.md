@@ -31,3 +31,5 @@ Repository for Software Maintenance and Testing course
 #### [Laboratorio 5](boundedqueue)
 
 #### [Laboratorio 6](caja-negra)
+
+#### [Laboratorio 7](integration)
